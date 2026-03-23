@@ -61,6 +61,10 @@ This repo uses **GitHub Actions** to build and deploy to GitHub Pages automatica
 
 Your site will be live at `https://<username>.github.io/gamedev-demos/`.
 
+**Important:** You must enable Pages and choose **GitHub Actions** as the source *before* the first deploy. If the workflow fails with `Get Pages site failed` / `Not Found`, Pages isn’t enabled yet—open **Settings → Pages**, set **Source** to **GitHub Actions**, then re-run the workflow. You do **not** need a new git branch; this is a repository setting only.
+
+The workflow builds with **Node.js 22** and sets `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true` so GitHub’s JavaScript Actions (checkout, Pages deploy, etc.) run on **Node 24** ahead of the [June 2026 default](https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/), which avoids the Node 20 deprecation warning.
+
 ### Changing the repo name
 
 If your GitHub repo is named something other than `gamedev-demos`, update the Vite `base` in `vite.config.ts` and the Router `basename` in `src/main.tsx` to match:
