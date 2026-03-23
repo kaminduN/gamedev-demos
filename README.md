@@ -40,6 +40,12 @@ Open `http://localhost:5173/gamedev-demos/` in your browser.
 
 4. **Run `npm run dev`** and navigate to the Games tab to verify it loads.
 
+### Fullscreen on the Play page
+
+The portfolio shell provides a **Fullscreen** control that requests browser fullscreen on the game **iframe**. If the Fullscreen API isn’t available or the request is denied (common on some mobile browsers), it falls back to an **immersive** mode: fixed full-viewport layout with an **Exit fullscreen** control and **Escape** to leave.
+
+Games can also implement their own fullscreen (e.g. Phaser’s scale toggle) inside the iframe; the iframe already allows fullscreen via `allow="fullscreen"`.
+
 ### Phaser `base` path caveat
 
 The Play page loads each game in an iframe at `/<repo>/games/<slug>/index.html`. If your Phaser build assumes asset paths relative to domain root (`/`), those paths will break under the repo sub-path.
