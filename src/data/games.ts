@@ -27,5 +27,12 @@ export const games: GameEntry[] = [
     thumbnail: 'games/brick_breaker/thumb.png',
     width: 800,
     height: 600,
+  },{
+    slug: 'pong',
+    title: 'Pong',
+    description: 'A classic pong game built with Phaser 3.',
+    thumbnail: 'games/pong/thumb.png',
+    width: 800,
+    height: 600,
   },
 ];
