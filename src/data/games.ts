@@ -51,6 +51,6 @@ export const games: GameEntry[] = [
     width: 800,
     height: 600,
     comingSoon: true,
-    // comingSoonMessage: 'Optional custom line shown on the placeholder page.',
+    comingSoonMessage: 'This game is coming soon. Check back later for updates.'
   },
 ];
