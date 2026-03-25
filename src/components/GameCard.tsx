@@ -18,7 +18,14 @@ export default function GameCard({ game }: { game: GameEntry }) {
         {!thumbUrl && <span className={styles.placeholder}>🎮</span>}
       </div>
       <div className={styles.body}>
-        <h3 className={styles.title}>{game.title}</h3>
+        <div className={styles.titleRow}>
+          <h3 className={styles.title}>{game.title}</h3>
+          {game.comingSoon && (
+            <span className={styles.soonBadge} aria-label="Coming soon">
+              Soon
+            </span>
+          )}
+        </div>
         <p className={styles.desc}>{game.description}</p>
       </div>
     </Link>

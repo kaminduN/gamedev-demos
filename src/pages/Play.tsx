@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { games } from '../data/games';
+import { games, type GameEntry } from '../data/games';
 import { useTitle } from '../hooks/useTitle';
 import {
   getFullscreenElement,
@@ -10,6 +10,18 @@ import {
 } from '../utils/fullscreen';
 import styles from './Play.module.css';
 
+function gameIframeSrc(game: GameEntry): string {
+  const base = import.meta.env.BASE_URL;
+  if (game.comingSoon) {
+    const q = new URLSearchParams({ title: game.title });
+    if (game.comingSoonMessage) {
+      q.set('message', game.comingSoonMessage);
+    }
+    return `${base}games/_coming-soon/index.html?${q.toString()}`;
+  }
+  return `${base}games/${game.slug}/index.html`;
+}
+
 export default function Play() {
   const { slug } = useParams<{ slug: string }>();
   const game = games.find((g) => g.slug === slug);
@@ -17,6 +29,10 @@ export default function Play() {
   const [immersive, setImmersive] = useState(false);
   const [docFullscreen, setDocFullscreen] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  useEffect(() => {
+    setLoading(true);
+  }, [slug]);
 
   useTitle(game ? game.title : 'Not Found');
 
@@ -102,7 +118,7 @@ export default function Play() {
     );
   }
 
-  const src = `${import.meta.env.BASE_URL}games/${game.slug}/index.html`;
+  const src = gameIframeSrc(game);
   const w = game.width ?? 800;
   const h = game.height ?? 600;
 
@@ -150,6 +166,7 @@ export default function Play() {
       >
         {loading && <div className={styles.loader}>Loading game&hellip;</div>}
         <iframe
+          key={src}
           ref={iframeRef}
           className={styles.iframe}
           src={src}

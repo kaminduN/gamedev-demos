@@ -38,7 +38,9 @@ Open `http://localhost:5173/gamedev-demos/` in your browser.
    }
    ```
 
-4. **Run `npm run dev`** and navigate to the Games tab to verify it loads.
+4. **Optional — placeholder before files exist:** set `comingSoon: true` on an entry so the Play page loads `public/games/_coming-soon/index.html` (styled like the shell) and passes `title` plus optional `comingSoonMessage` as query params. When `public/games/<slug>/index.html` is in place, set `comingSoon: false` or remove the flag.
+
+5. **Run `npm run dev`** and open the Games tab to verify.
 
 ### Fullscreen on the Play page
 
